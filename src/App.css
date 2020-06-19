@@ -40,3 +40,11 @@
 .large {
   font-size: 900%;
 }
+
+.no {
+  color: blue;
+}
+
+.yes {
+  color: red;
+}

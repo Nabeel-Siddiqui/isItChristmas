@@ -1,5 +1,4 @@
 import React, { useEffect, useState, useRef } from "react";
-
 import logo from './logo.svg';
 import './App.css';
 
@@ -16,21 +15,25 @@ function App() {
   let christmas = new Intl.DateTimeFormat('default', dateOptions).format(date.setMonth(11,25));
 
   const isItChristmas = () => {
-    return currentDate === christmas ? "YES" : "NO"
+    return currentDate === christmas ? yes().props.children : no().props.children
   }
 
-  
-  
-  let timer = useRef();
-  
-  const christmasCountdown = () => {
+  const no = () => {
+    return <h1>NO</h1>
+  }
 
-    let todaysDate = new Date();
-    let currentYear = todaysDate.getFullYear();
+  const yes = () => {
+    return <h1>YES</h1>
+  }
+
+  let timer = useRef();
+  const christmasCountdown = () => {
+    
+    let currentYear = new Date().getFullYear();
     let christmasDate = new Date('12/25/' + currentYear + ' 00:00:00 ').getTime();  
 
     timer = setInterval(() => {
-      let today = todaysDate.getTime();
+      let today = new Date().getTime();
       let timeLeft = christmasDate - today;
       
       let days = Math.floor(timeLeft / (1000 * 60 * 60 * 24));
@@ -53,7 +56,7 @@ function App() {
 
   useEffect(() => {
     christmasCountdown();
-  })
+  }, )
 
   return (
     <div className="App">
